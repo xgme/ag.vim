@@ -107,6 +107,7 @@ function! ag#Ag(cmd, args)
   let l:grepformat_bak=&grepformat
   let l:t_ti_bak=&t_ti
   let l:t_te_bak=&t_te
+  let l:one_arg = (l:grepargs[0] == '"' && l:grepargs[len(l:grepargs) - 1] == '"') || len(split(l:grepargs)) == 1
   try
     let &grepprg=g:ag_prg
     let &grepformat=g:ag_format
@@ -123,6 +124,8 @@ function! ag#Ag(cmd, args)
         silent! execute a:cmd . " " . escape(l:grepargs, '|')
         exe "lcd ".l:cwd_back
       endtry
+    elseif exists('g:ag_working_path') && l:one_arg == 1
+      silent! execute a:cmd . " " . escape(l:grepargs, '|') . " " . g:ag_working_path
     else " Someone chose an undefined value or 'c' so we revert to the default
       silent! execute a:cmd . " " . escape(l:grepargs, '|')
     endif
