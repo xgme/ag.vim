@@ -1,5 +1,8 @@
 # ag.vim #
 
+This plugin supports default directory for searches without a given path. Use following in you .vimrc to set your default search directory:
+let g:ag_working_path="/default/search/path"
+
 ## Deprecated: See [this comment](https://github.com/rking/ag.vim/issues/124#issuecomment-227038003) for more info. Maybe try [ack.vim](https://github.com/mileszs/ack.vim#can-i-use-ag-the-silver-searcher-with-this) as an alternative. ##
 
 This plugin is a front for ag, A.K.A.
